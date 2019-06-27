@@ -12,6 +12,69 @@ UI.menu("Plugins").add_item("Draw stairs") {
   draw_stairs
 }
 
+# Add a menu item to launch our plugin.
+UI.menu("Plugins").add_item("Draw table") {  
+  draw_table
+}
+
+# Add a menu item to launch our plugin.
+UI.menu("Plugins").add_item("Draw 3 tables") {
+  
+  tables_x = 3
+  tables_y = 
+  dir_x = 1
+  dir_y = 0
+  dir_z = 0
+    
+  place_at_x = 0
+  place_at_y = 0
+  place_at_z = 40
+
+  space = 5
+  
+  # table top
+  top_length = 100    # 150   # x axis
+  top_width = 50      # 75    # y axis
+  top_thickness = 2   # 2
+  leg_thickness = 3   # 3
+  leg_height = 40     # 100
+    
+  for table_no_x in 0..tables_x -1
+    for table_no_y in 0..tables_y -1 
+      draw_table_with_dimensions( place_at_x + ( (top_length + space) * table_no_x), place_at_y + ( (top_width + space) * table_no_y), place_at_z, top_length, top_width, top_thickness, leg_height, leg_thickness)
+    end
+  end  
+}
+
+# Add a menu item to launch our plugin.
+UI.menu("Plugins").add_item("Draw x by y tables") {
+  
+  tables_x = 20
+  tables_y = 20
+  dir_x = 1
+  dir_y = 0
+  dir_z = 0
+    
+  place_at_x = 0
+  place_at_y = 0
+  place_at_z = 40
+
+  space = 5
+  
+  # table top
+  top_length = 100    # 150   # x axis
+  top_width = 50      # 75    # y axis
+  top_thickness = 2   # 2
+  leg_thickness = 3   # 3
+  leg_height = 40     # 100
+    
+  for table_no_x in 0..tables_x -1
+    for table_no_y in 0..tables_y -1 
+      draw_table_with_dimensions( place_at_x + ( (top_length + space) * table_no_x), place_at_y + ( (top_width + space) * table_no_y), place_at_z, top_length, top_width, top_thickness, leg_height, leg_thickness)
+    end
+  end  
+}
+
 
 def draw_stairs
 
@@ -49,7 +112,7 @@ def draw_stairs
 
 end
 
-
+                                                                     # x axis    y axis
 def draw_table_with_dimensions(place_at_x, place_at_y, place_at_z, top_length, top_width, top_thickness, leg_height, leg_thickness)
   # Get handles to our model and the Entities collection it contains.
   model = Sketchup.active_model
@@ -106,12 +169,27 @@ def draw_table_with_dimensions(place_at_x, place_at_y, place_at_z, top_length, t
 
 end
 
-draw_table_with_dimensions(0, 0, 0, 2000, 500, 100, 900, 70)
+def draw_table
+  
+  place_at_x = 0
+  place_at_y = 0
+  place_at_z = 40
+  
+  # table top
+  top_length = 100    # 150
+  top_width = 50      # 75
+  top_thickness = 2   # 2
+  leg_thickness = 3   # 3
+  leg_height = 40     # 100
+
+  draw_table_with_dimensions(place_at_x, place_at_y, place_at_z, top_length, top_width, top_thickness, leg_height, leg_thickness)
+
+end
 
 puts "\n==> NAME: Hellow World w Tables - Loaded"
 puts "FROM: #{__FILE__}"
 require 'FileUtils'
 content = File.read(__FILE__)
 puts "\nFunctions available:"
-content.each_line{ |l| l =~ /^def (.*?)$/; puts $1 if $1 }
+content.each_line{ |l| l =~ /^def (.*?)$/; puts $1 if $1}
 
