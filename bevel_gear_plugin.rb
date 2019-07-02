@@ -50,7 +50,7 @@ module SKTestRuns
     
 
     # This method creates a simple pulled square inside of a group in the model.
-    # run this so give scale on the dev (concentric rings) model
+    # 
     def self.little_stick
       # We need a reference to the currently active model. The SketchUp API
       # currently only lets you work on the active model. Under Windows there
@@ -131,6 +131,9 @@ module SKTestRuns
 
     def self.create_cog(inner_d, width = 3.0, dbg_cylinder_radius = 6.0)
       create_circle(inner_d.mm)
+      # create face
+      # pull out 
+      create_circle((inner_d + 3).mm)      
     end
 
     def self.create_circle(d)
